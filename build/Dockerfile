@@ -7,8 +7,8 @@ RUN apt-get update \
     && apt-get dist-upgrade -y
 RUN mkdir tool chal
 
-RUN apt-get install -y wget curl netcat binwalk file gdb git exiftool steghide ffmpeg ltrace rubygems gcc python2 python3 python3-pip john hashcat sqlmap gzip \
-    && pip3 install Pillow
+RUN apt-get install -y wget curl netcat binwalk file gdb git exiftool steghide ffmpeg ltrace rubygems gcc python2 python3 python3-pip john hashcat sqlmap gzip\
+    && pip3 install Pillow && pip install stego-lsb
 
 RUN wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 RUN gem install zsteg
@@ -26,6 +26,11 @@ RUN pip3 install --user -r requirements.txt
 WORKDIR /root/tool
 RUN  git clone https://github.com/kevthehermit/DuckToolkit.git
 WORKDIR /root/tool/DuckToolkit
+RUN python3 setup.py install
+
+WORKDIR /root/tool
+RUN git clone https://github.com/ragibson/Steganography.git
+WORKDIR /root/tool/Steganography
 RUN python3 setup.py install
 
 WORKDIR /root/tool
