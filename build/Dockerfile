@@ -3,12 +3,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
 
 WORKDIR /root
-RUN apt-get update \ 
-    && apt-get dist-upgrade -y
-RUN mkdir tool chal
+RUN apt update \ 
+    && apt dist-upgrade -y
+RUN mkdir tool file
 
-RUN apt-get install -y wget curl netcat binwalk file gdb git exiftool steghide ffmpeg ltrace rubygems gcc python2 python3 python3-pip john hashcat sqlmap gzip lldb \
-    && pip3 install Pillow
+RUN apt install -y wget curl vim netcat binwalk file gdb git exiftool steghide ffmpeg ltrace rubygems gcc python2 python3 python3-pip  \ 
+    john hashcat sqlmap gzip lldb xxd foremost apktool ncurses-hexedit && pip3 install Pillow
 
 RUN wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 RUN gem install zsteg
@@ -26,7 +26,17 @@ RUN python3 setup.py install
 WORKDIR /root/tool
 RUN git clone https://github.com/Pulho/sigBits.git
 RUN git clone https://github.com/TeamRocketIst/ctf-usb-keyboard-parser.git
+RUN git clone https://github.com/ragibson/Steganography
+RUN git clone https://github.com/sherlock-project/sherlock.git
+WORKDIR /root/tool/sherlock
+RUN python3 -m pip install -r requirements.txt
+WORKDIR /root/tool/Steganography
+RUN python3 setup.py install
 
-WORKDIR /root 
+WORKDIR /root/tool
+RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+    chmod 755 msfinstall && ./msfinstall
+
+WORKDIR /root
 
 CMD ["/bin/bash"]
