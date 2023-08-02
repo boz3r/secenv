@@ -27,6 +27,9 @@ WORKDIR /root/tool
 RUN git clone https://github.com/Pulho/sigBits.git
 RUN git clone https://github.com/TeamRocketIst/ctf-usb-keyboard-parser.git
 RUN git clone https://github.com/ragibson/Steganography
+RUN git clone https://github.com/sherlock-project/sherlock.git
+WORKDIR /root/tool/sherlock
+RUN python3 -m pip install -r requirements.txt
 WORKDIR /root/tool/Steganography
 RUN python3 setup.py install
 
