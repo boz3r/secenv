@@ -27,9 +27,6 @@ WORKDIR /root/tool
 RUN git clone https://github.com/Pulho/sigBits.git
 RUN git clone https://github.com/TeamRocketIst/ctf-usb-keyboard-parser.git
 RUN git clone https://github.com/ragibson/Steganography
-RUN git clone https://github.com/sherlock-project/sherlock.git
-WORKDIR /root/tool/sherlock
-RUN python3 -m pip install -r requirements.txt
 WORKDIR /root/tool/Steganography
 RUN python3 setup.py install
 
@@ -38,5 +35,4 @@ RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/conf
     chmod 755 msfinstall && ./msfinstall
 
 WORKDIR /root
-
 CMD ["/bin/bash"]
