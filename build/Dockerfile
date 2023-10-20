@@ -33,9 +33,5 @@ RUN python3 -m pip install -r requirements.txt
 WORKDIR /root/tool/Steganography
 RUN python3 setup.py install
 
-WORKDIR /root/tool
-RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
-    chmod 755 msfinstall && ./msfinstall
-
 WORKDIR /root
 CMD ["/bin/bash"]
