@@ -8,7 +8,7 @@ RUN apt update \
 RUN mkdir tools file
 
 RUN apt install -y wget curl vim netcat binwalk file git exiftool steghide rubygems gcc python2 python3 python3-pip  \ 
-    john hashcat yara sqlmap gzip unzip xxd foremost apktool ncurses-hexedit && pip3 install Pillow
+    john hashcat yara sqlmap gzip unzip xxd foremost apktool ncurses-hexedit auditd && pip3 install Pillow
 
 RUN wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 RUN gem install zsteg
