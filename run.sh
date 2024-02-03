@@ -1,1 +1,1 @@
-cd file; docker run -it --rm -w /root/file -v "$(pwd):/root/file" --cap-add=SYS_PTRACE secenv
+cd file; docker run -it --rm -w /home/lab/file -v "$(pwd):/home/lab/file" --cap-add=SYS_PTRACE secenv
